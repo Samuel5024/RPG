@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviourPun
         {
             // get the enemy and damage them
             Enemy enemy = hit.collider.GetComponent<Enemy>();
+            enemy.photonView.RPC("TakeDamage", RpcTarget.MasterClient, damage);
         }
     }
 }
