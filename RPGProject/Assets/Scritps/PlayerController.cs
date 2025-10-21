@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviourPun
     [Header("Components")]
     public Rigidbody2D rig;
     public Player photonPlayer;
+    public SpriteRenderer sr;
     public Animator weaponAnim;
     public HeaderInfo headerInfo;
 
@@ -45,6 +46,8 @@ public class PlayerController : MonoBehaviourPun
             Attack();
         }
 
+
+        // flip player horizontally
         float mouseX = (Screen.width / 2) - Input.mousePosition.x;
 
         if(mouseX < 0)
@@ -83,8 +86,91 @@ public class PlayerController : MonoBehaviourPun
         if(hit.collider != null && hit.collider.gameObject.CompareTag("Enemy"))
         {
             // get the enemy and damage them
-            Enemy enemy = hit.collider.GetComponent<Enemy>();
-            enemy.photonView.RPC("TakeDamage", RpcTarget.MasterClient, damage);
+
         }
+
+        // play attack animation
+        weaponAnim.SetTrigger("Attack");
+    }
+
+    [PunRPC]
+    public void TakeDamage(int damage)
+    {
+        curHp -= damage;
+
+        // update the health bar
+
+        if(curHp < 0)
+        {
+            Die();
+        }
+        else
+        {
+            StartCoroutine(DamageFlash());
+
+            IEnumerator DamageFlash()
+            {
+                sr.color = Color.red;
+                yield return new WaitForSeconds(0.05f);
+                sr.color = Color.white;
+            }
+        }
+    }
+
+    void Die()
+    {
+        dead = true;
+        rig.isKinematic = true;
+
+        transform.position = new Vector3(0, 99, 0);
+
+        Vector3 spawnPos = GameManager.instance.spawnPoints[Random.Range(0, GameManager.instance.spawnPoints.Length)].position;
+
+        StartCoroutine(Spawn(spawnPos, GameManager.instance.respawnTime));
+    }
+
+    IEnumerator Spawn(Vector3 spawnPos, float TimeToSpawn)
+    {
+        yield return new WaitForSeconds(TimeToSpawn);
+
+        dead = false;
+        transform.position = spawnPos;
+        rig.isKinematic = false;
+
+        // update the health bar
+    }
+
+    public void Initialize(Player player)
+    {
+        id = player.ActorNumber;
+        photonPlayer = player;
+        GameManager.instance.players[id - 1] = this;
+
+        if (player.IsLocal)
+        {
+            me = this;
+        }
+        else
+        {
+            rig.isKinematic = true;
+        }
+
+    }
+
+    [PunRPC]
+    void Heal(int amountToHeal)
+    {
+        curHp = Mathf.Clamp(curHp + amountToHeal, 0, maxHp);
+
+        // update the health bar
+    }
+
+    [PunRPC]
+
+    void GiveGold(int goldToGive)
+    {
+        gold += goldToGive;
+
+        // update the UI
     }
 }
