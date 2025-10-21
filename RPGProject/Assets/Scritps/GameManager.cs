@@ -45,10 +45,4 @@ public class GameManager : MonoBehaviourPun
 
         // initialize the player
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
