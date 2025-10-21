@@ -154,7 +154,8 @@ public class PlayerController : MonoBehaviourPun
         {
             rig.isKinematic = true;
         }
-
+        // initialize the health bar
+        headerInfo.photonView.RPC("UpdateHealthBar", RpcTarget.All, curHp);
     }
 
     [PunRPC]
@@ -163,6 +164,7 @@ public class PlayerController : MonoBehaviourPun
         curHp = Mathf.Clamp(curHp + amountToHeal, 0, maxHp);
 
         // update the health bar
+        headerInfo.photonView.RPC("UpdateHealthBar", RpcTarget.All, curHp);
     }
 
     [PunRPC]
@@ -172,5 +174,7 @@ public class PlayerController : MonoBehaviourPun
         gold += goldToGive;
 
         // update the UI
+        //update the health bar
+        headerInfo.photonView.RPC("UpdateHealthBar", RpcTarget.All, curHp);
     }
 }
