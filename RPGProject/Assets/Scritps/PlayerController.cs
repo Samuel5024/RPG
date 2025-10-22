@@ -174,6 +174,7 @@ public class PlayerController : MonoBehaviourPun
         gold += goldToGive;
 
         // update the UI
+        GameUI.instance.UpdateGoldText(gold);
         //update the health bar
         headerInfo.photonView.RPC("UpdateHealthBar", RpcTarget.All, curHp);
     }
