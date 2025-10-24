@@ -138,6 +138,7 @@ public class PlayerController : MonoBehaviourPun
         rig.isKinematic = false;
 
         // update the health bar
+        headerInfo.photonView.RPC("UpdateHealthBar", RpcTarget.All, curHp);
     }
 
     [PunRPC]
@@ -147,6 +148,9 @@ public class PlayerController : MonoBehaviourPun
         photonPlayer = player;
         GameManager.instance.players[id - 1] = this;
 
+        // initialize the health bar
+        headerInfo.Initialize(player.NickName, maxHp);
+
         if (player.IsLocal)
         {
             me = this;
@@ -155,8 +159,7 @@ public class PlayerController : MonoBehaviourPun
         {
             rig.isKinematic = true;
         }
-        // initialize the health bar
-        headerInfo.photonView.RPC("UpdateHealthBar", RpcTarget.All, curHp);
+        
     }
 
     [PunRPC]
@@ -176,7 +179,5 @@ public class PlayerController : MonoBehaviourPun
 
         // update the UI
         GameUI.instance.UpdateGoldText(gold);
-        //update the health bar
-        headerInfo.photonView.RPC("UpdateHealthBar", RpcTarget.All, curHp);
     }
 }

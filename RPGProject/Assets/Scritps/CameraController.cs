@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
         {
             Vector3 targetPos = PlayerController.me.transform.position;
             targetPos.z = -10;
+            transform.position = targetPos;
         }
     }
 }

@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  moveSpeed: 3
+  moveSpeed: 21.4
   gold: 0
   curHp: 100
   maxHp: 100
@@ -380,7 +380,7 @@ MonoBehaviour:
   rig: {fileID: 971068828416380921}
   sr: {fileID: 6114346757449199314}
   weaponAnim: {fileID: 4458286468036978112}
-  headerInfo: {fileID: 0}
+  headerInfo: {fileID: 2768967129763087906}
 --- !u!114 &460551035042445036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,6 +521,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7267781268f8d8541ba66e37a9b20a39, type: 3}
+--- !u!114 &2768967129763087906 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4689991163865773922, guid: 7267781268f8d8541ba66e37a9b20a39, type: 3}
+  m_PrefabInstance: {fileID: 7456671197765546304}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25ec6e48bb2c9ee47b85a670fd61e817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4100961750157660045 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6886813112116133581, guid: 7267781268f8d8541ba66e37a9b20a39, type: 3}
