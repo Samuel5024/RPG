@@ -140,6 +140,7 @@ public class PlayerController : MonoBehaviourPun
         // update the health bar
     }
 
+    [PunRPC]
     public void Initialize(Player player)
     {
         id = player.ActorNumber;
