@@ -9,7 +9,7 @@ public class GameUI : MonoBehaviour
     // instance
     public static GameUI instance;
 
-   void Awake()
+    void Awake()
     {
         instance = this;
     }
