@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 4831528260468524069}
   - component: {fileID: 7966156735602886647}
   - component: {fileID: 1864102265377402320}
+  - component: {fileID: 6546763127034448107}
+  - component: {fileID: 5643223295164169808}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,6 +156,53 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.7, y: 0.85}
   m_Direction: 0
+--- !u!114 &6546763127034448107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8037355214149759070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e6e3913ea3ee6946a6d4dd319289d3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyName: Enemy
+  moveSpeed: 3
+  curHp: 20
+  maxHp: 20
+  chaseRange: 5
+  attackRange: 1.2
+  playerDetectRate: 0.2
+  objectToSpawnOnDeath: GoldPickup
+  damage: 5
+  attackRate: 0.5
+  healthBar: {fileID: 866635297055524515}
+  sr: {fileID: 4831528260468524069}
+  rig: {fileID: 7966156735602886647}
+--- !u!114 &5643223295164169808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8037355214149759070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &5553178220632732097
 PrefabInstance:
   m_ObjectHideFlags: 0

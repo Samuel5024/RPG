@@ -13,12 +13,8 @@ public class EnemySpawner : MonoBehaviourPun
 
     private float lastSpawnCheckTime;
     private List<GameObject> curEnemies = new List<GameObject>();
-    void Start()
-    {
-        
-    }
 
-    void Update()
+    private void Update()
     {
        // check the spawn condition
        if(!PhotonNetwork.IsMasterClient)

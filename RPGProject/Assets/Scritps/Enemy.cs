@@ -81,7 +81,7 @@ public class Enemy : MonoBehaviourPun
     // check if a player is within the chase range. If so, target them.
     void DetectPlayer()
     {
-        if(Time.time - lastPlayerDetectTime >= playerDetectRate)
+        if(Time.time - lastPlayerDetectTime > playerDetectRate)
         {
             lastPlayerDetectTime = Time.time;
         }

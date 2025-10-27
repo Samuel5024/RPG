@@ -84,11 +84,11 @@ public class PlayerController : MonoBehaviourPun
         // did we hit an enemy?
         if(hit.collider != null && hit.collider.gameObject.CompareTag("Enemy"))
         {
+            Debug.Log("read meeeeee");
             // get the enemy and damage them
             Enemy enemy = hit.collider.GetComponent<Enemy>();
             enemy.photonView.RPC("TakeDamage", RpcTarget.MasterClient, damage);
         }
-
         // play attack animation
         weaponAnim.SetTrigger("Attack");
     }
@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviourPun
         // update the health bar
         headerInfo.photonView.RPC("UpdateHealthBar", RpcTarget.All, curHp);
 
-        if(curHp < 0)
+        if(curHp <= 0)
         {
             Die();
         }
