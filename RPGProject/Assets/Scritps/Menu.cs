@@ -1,12 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
 using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
-using Unity.VisualScripting;
-using Unity.Mathematics;
 
 public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
 {
@@ -42,11 +39,11 @@ public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
         Cursor.lockState = CursorLockMode.None;
 
         // are we in a game?
-        if(PhotonNetwork.InRoom)
+        if (PhotonNetwork.InRoom)
         {
             // go to the lobby
 
-            //make the room visible
+            // make the room visible
             PhotonNetwork.CurrentRoom.IsVisible = true;
             PhotonNetwork.CurrentRoom.IsOpen = true;
         }
@@ -64,7 +61,7 @@ public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
         // activate the requested screen
         screen.SetActive(true);
 
-        if(screen == lobbyBrowserScreen)
+        if (screen == lobbyBrowserScreen)
         {
             UpdateLobbyBrowserUI();
         }
@@ -115,18 +112,18 @@ public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
     void UpdateLobbyUI()
     {
         // enable or disable the start game button depending on if we're the host
-        startGameButton.interactable = true;
+        startGameButton.interactable = PhotonNetwork.IsMasterClient;
 
         // display all the players
         playerListText.text = "";
 
-        foreach(Player player in PhotonNetwork.PlayerList)
+        foreach (Player player in PhotonNetwork.PlayerList)
         {
-            playerListText.text += player.NickName = "\n";
+            playerListText.text += player.NickName + "\n";
         }
 
         // set the room info text
-        roomInfoText.text = "<b>Room Name</b>\n"; 
+        roomInfoText.text = "<b>Room Name</b>\n" + PhotonNetwork.CurrentRoom.Name;
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -153,7 +150,7 @@ public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
     void UpdateLobbyBrowserUI()
     {
         // disable all room buttons
-        foreach(GameObject button in roomButtons)
+        foreach (GameObject button in roomButtons)
         {
             button.SetActive(false);
         }
@@ -183,7 +180,7 @@ public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
         roomButtons.Add(buttonObj);
         return buttonObj;
     }
-    
+
     public void OnJoinRoomButton(string roomName)
     {
         NetworkManager.instance.JoinRoom(roomName);
@@ -197,11 +194,5 @@ public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
     public override void OnRoomListUpdate(List<RoomInfo> allRooms)
     {
         roomList = allRooms;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

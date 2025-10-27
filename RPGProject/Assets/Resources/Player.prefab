@@ -232,8 +232,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5460356691041281410}
   - {fileID: 4100961750157660045}
+  - {fileID: 5460356691041281410}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6114346757449199314
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  moveSpeed: 21.4
+  moveSpeed: 3
   gold: 0
   curHp: 100
   maxHp: 100
@@ -376,7 +376,6 @@ MonoBehaviour:
   damage: 10
   attackRange: 0.1
   attackRate: 0.2
-  lastAttackTime: 0
   rig: {fileID: 971068828416380921}
   sr: {fileID: 6114346757449199314}
   weaponAnim: {fileID: 4458286468036978112}
@@ -432,9 +431,21 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3340968894031408054, guid: 7267781268f8d8541ba66e37a9b20a39, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0.0049896
+      objectReference: {fileID: 0}
+    - target: {fileID: 3340968894031408054, guid: 7267781268f8d8541ba66e37a9b20a39, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0025024414
+      objectReference: {fileID: 0}
     - target: {fileID: 3596445618579464671, guid: 7267781268f8d8541ba66e37a9b20a39, type: 3}
       propertyPath: m_Name
       value: HeaderInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 5442428867261949029, guid: 7267781268f8d8541ba66e37a9b20a39, type: 3}
+      propertyPath: m_FillAmount
+      value: 0.711
       objectReference: {fileID: 0}
     - target: {fileID: 6886813112116133581, guid: 7267781268f8d8541ba66e37a9b20a39, type: 3}
       propertyPath: m_Pivot.x

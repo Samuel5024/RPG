@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
@@ -20,7 +19,7 @@ public class PlayerController : MonoBehaviourPun
     public int damage;
     public float attackRange;
     public float attackRate;
-    public float lastAttackTime;
+    private float lastAttackTime;
 
     [Header("Components")]
     public Rigidbody2D rig;
@@ -68,7 +67,7 @@ public class PlayerController : MonoBehaviourPun
         float y = Input.GetAxis("Vertical");
 
         // apply that to our velocity
-        rig.linearVelocity = new Vector2(x, y);
+        rig.linearVelocity = new Vector2(x, y) * moveSpeed;
 
     }
 
@@ -121,7 +120,7 @@ public class PlayerController : MonoBehaviourPun
     void Die()
     {
         dead = true;
-        rig.isKinematic = true;
+        rig.bodyType = RigidbodyType2D.Kinematic; // replaces rig.isKinematic = true; 
 
         transform.position = new Vector3(0, 99, 0);
 
@@ -136,7 +135,8 @@ public class PlayerController : MonoBehaviourPun
 
         dead = false;
         transform.position = spawnPos;
-        rig.isKinematic = false;
+        rig.bodyType = RigidbodyType2D.Kinematic;
+        // rig.isKinematic = false;
 
         // update the health bar
         headerInfo.photonView.RPC("UpdateHealthBar", RpcTarget.All, curHp);
@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviourPun
         }
         else
         {
-            rig.isKinematic = true;
+            rig.bodyType = RigidbodyType2D.Kinematic; // replaces rig.isKinematic = true
         }
         
     }
