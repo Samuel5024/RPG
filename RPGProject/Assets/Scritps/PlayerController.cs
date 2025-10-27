@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviourPun
         curHp -= damage;
 
         // update the health bar
-        headerInfo.photonView.RPC("UpdateHealtBar", RpcTarget.All);
+        headerInfo.photonView.RPC("UpdateHealthBar", RpcTarget.All, curHp);
 
         if(curHp < 0)
         {
